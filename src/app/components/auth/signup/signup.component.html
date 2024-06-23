@@ -1,0 +1,41 @@
+<div>
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="signUp()" #registerForm="ngForm">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="signUpRequest.userEmail" name="userEmail" required email
+                #email="ngModel">
+            <div *ngIf="email.invalid && email.touched">
+                <small *ngIf="email.errors?.['required']">Email is required.</small>
+                <small *ngIf="email.errors?.['email']">Invalid email address.</small>
+            </div>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" [(ngModel)]="signUpRequest.userPassword" name="userPassword" required
+                minlength="6" #password="ngModel">
+            <div *ngIf="password.invalid && password.touched">
+                <small *ngIf="password.errors?.['required']">Password is required.</small>
+                <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</small>
+            </div>
+        </div>
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" [(ngModel)]="signUpRequest.firstName" name="firstName" required
+                #firstName="ngModel">
+            <div *ngIf="firstName.invalid && firstName.touched">
+                <small *ngIf="firstName.errors?.['required']">First name is required.</small>
+            </div>
+        </div>
+        <div>
+            <label for="secondName">Second Name:</label>
+            <input type="text" id="secondName" [(ngModel)]="signUpRequest.secondName" name="secondName" required
+                #secondName="ngModel">
+            <div *ngIf="secondName.invalid && secondName.touched">
+                <small *ngIf="secondName.errors?.['required']">Second name is required.</small>
+            </div>
+        </div>
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    </form>
+    <p>{{ message }}</p>
+</div>
